@@ -1,0 +1,72 @@
+Q- What is difference between Named Export, Default Export and *as an export?
+    A- ES6 provides us to import a module and use it in other files. In React terms, one can use stateless components in other components by just importing it.
+    1-Named Export: With named exports, we can export multiple components in a single file.
+        
+        Exp- //named exports multiple components in single file MyComponent.js  
+        export const MyComponent = () => {}
+        export const MyComponent2 = () => {}
+
+        //named import  from ./MyComponent.js file
+        // ex. importing a single named export
+        import { MyComponent } from "./MyComponent";
+        // ex. importing multiple named exports
+        import { MyComponent, MyComponent2 } from "./MyComponent";
+        // ex. giving a named import a different name by using "as":
+        import { MyComponent2 as MyNewComponent } from "./MyComponent";
+
+    2- Default Export: we can only export one component in a single file One can have only one default export per file. When we import we have to specify a name and import like:
+        Exp- //default export
+        const MyComponent = () => {}
+        export default MyComponent;
+
+        // default import
+        import MyDefaultComponent from "./MyDefaultExport";
+
+    3- *as Import: Import all the named exports onto an object:
+    Exp- //named exports multiple components in single file MyComponent.js  
+        export const MyComponent = () => {}
+        export const MyComponent2 = () => {}
+
+        //Import all the named exports 
+        import * as MainComponents from "./MyComponent";
+
+        // Now access each component which was named export like this - MainComponents.MyComponent and MainComponents.MyComponent2
+
+Q- What is Importance of Config.js file?
+A-
+    1-  Config file short form for Configuration file.
+    2- developers might want to manage a static global variable across different components. Ideally, this variable would be a  constant or static data such as the app URL, server URL, theme colors, Image URL , Hard coded JSON, Hard coded array of objects etc.
+    3-   We keep all our static data in a variable  in the config file and we named export all the static data which is stored in variables.
+    In this way we increase reusability of all our static data throughout the app by just importing it. It is like using global variables by using a config file. we increase reusability of our static content and code also looks cleaner.
+    4- When developing an application, it is always advisable to write clean code that others can understand. Config files help you to achieve just that.
+    5- However, if something is private or sensitive information, like API key, or Login credentials, it is advisable to put information in the .env file and not in a config file.
+Q- What is React Hook?
+A-
+    1-  Hooks are simply Javascript  functions that let you “hook into '' React state and lifecycle features from function components. Hooks don't work inside class based components. 
+    Exp- useState is a function that’s why we write like this useState(). 
+    2- Every hook has a different function which facebook developers wrote for us and exported these functions as a named export. That’s why when we import it we use {} braces. 
+    3-  We can get Hooks from React by importing it. 
+    exp- Import {useState} from ‘react’;
+
+Q- Why do we need useState Hook?
+A-
+    1- useState hook allows us to have state variables in the JSX functional component. It takes one argument which is the initial state and returns a state value and a function to update it.
+    2- useState function returns Array . first element of the array which is the "state variable name" index[0] (searchText), and the second element of the array which is is the set Function (setSearchText ) ( index[1]) 
+    E.g
+    Function useState(){
+    Return [ searchText , setSearchText  ]
+    }
+    
+    Var functionReturndValue = useState();
+    functionReturndValue will have array  [ searchText , setSearchText  ]
+    //access index0 which is state variable
+    Var searchText = functionReturndValue [0]
+    //access index1 which is set function which update state variable
+    Var setSearchText = functionReturndValue [1]
+
+    //Destructure it instead of writing too much code
+    Const [searchText,  setSearchText  ] = useState();
+
+    3- useState gives us a set function . You can update the State variable (searchText) only by calling that set function (setSearchText).when components re-render it will only update that change in DOM because of Reconciliation. it will not update entire DOM.This maked our app fast
+
+ 
